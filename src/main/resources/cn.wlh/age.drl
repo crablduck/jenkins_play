@@ -1,0 +1,19 @@
+package cn.wlh;
+import  cn.wlh.model.Person;
+import  java.util.*;
+import  cn.wlh.service.impl.OrderServiceImpl;
+global  OrderServiceImpl<Person> orderService;
+rule " 身份证"
+    when
+        $p : Person()
+        ($pp : Person(mobile_id == $p.mobile_id, user_id == $p.user_id) from orderService.getAllOrderList();) or
+               (Person(phone  ==  $p.phone, user_id == $p.user_id ) from orderService.getAllOrderList();    )
+
+    then
+        $p.setTotalScore(  $p.getTotalScore() - 25);
+        $p.setBaseDescriptions("这个是管理员专用模板哦");
+
+end
+
+
+

@@ -1,0 +1,82 @@
+<div id="mainIndex">
+    <div class="layui-row main-header">
+        <span><%manageCenter%>&nbsp;>&nbsp;<%applicationManage%></span><!-- 管理中心 应用管理 -->
+    </div>
+    <div class="layui-row main-content">
+        <div class="main-content-top">
+            <button id="addApp" class="layui-btn layui-btn-normal layui-btn-radius" onclick="layui.applicationManage.addApp()">+&nbsp;&nbsp;<%add_app%></button><!-- 添加应用 -->
+        </div>
+        <div class="main-content-form">
+            <form class="layui-form">
+                <div class="layui-form-item">
+                    <div class="layui-input-inline">
+                        <input type="text" id="commodity-number-name" autocomplete="off" v-bind:placeholder="app_number_name" class="layui-input"><!-- 应用编号/应用名称 -->
+                    </div>
+                    <div class="layui-input-inline main-form-state">
+                        <select id="state" name="state" class="layui-select">
+                            <option value=""><%status%></option><!-- 状态 -->
+                            <option value="0"><%enable%></option><!-- 启用 -->
+                            <option value="1"><%disable%></option><!-- 禁用 -->
+                        </select>
+                    </div>
+                    <div class="layui-col-md1">
+                        <a class="layui-btn layui-btn-sm layui-btn-normal layui-btn-radius" onclick="layui.applicationManage.initTable()"><img src="../bamboo/img/query.png"><%query%></a><!-- 查询 -->
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="main-content-center">
+            <div id="applicationManageTable" class="layui-table" lay-filter="applicationManageEvent"></div>
+        </div>
+    </div>
+</div>
+
+<script id="addOrUpdateApp" type="text/html">
+    <div class="" style="padding: 20px;">
+        <form id="addOrUpdateAppForm" class="layui-form" autocomplete="off">
+            <input type="hidden" name="id" value="{{d.id}}">
+            <div class="layui-form-item">
+                <label class="layui-form-label"><%app_number%></label><!-- 应用编号 -->
+                <div class="layui-input-block">
+                    <input type="text" name="commodityNumber" v-bind:placeholder="app_number" lay-verify="commodityNumber" class="layui-input" value="{{d.commodityNumber}}" /><!-- 应用编号 -->
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label"><%app_name%></label><!-- 应用名称 -->
+                <div class="layui-input-block">
+                    <input type="text" name="commodityName" v-bind:placeholder="app_name" lay-verify="commodityName" class="layui-input" value="{{d.commodityName}}" /><!-- 应用名称 -->
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label"><%status%></label><!-- 状态 -->
+                <div class="layui-input-block">
+                    <input type="radio" id="enable" name="state" value="0" v-bind:title="enable" checked=""><!-- 启用 -->
+                    <input type="radio" id="disable" name="state" value="1" v-bind:title="disable"><!-- 禁用 -->
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label"><%note%></label><!-- 备注 -->
+                <div class="layui-input-block">
+                    <textarea id="descr" name="descr" v-bind:placeholder="note" class="layui-textarea">{{d.descr}}</textarea><!-- 备注 -->
+                </div>
+            </div>
+            <div class="layui-form-item form-btn">
+                <div class="layui-inline">
+                    <button class="layui-btn layui-btn-md" lay-submit lay-filter="addOrUpdateAppForm"><%now_submit%></button><!-- 立即提交 -->
+                </div>
+            </div>
+        </form>
+    </div>
+</script>
+
+
+<script type="text/javascript">
+    layui.use("applicationManage",function(){
+        var applicationManage = layui.applicationManage;
+        //初始化页面
+        applicationManage.initView();
+        //监听事件
+        applicationManage.tool();
+    })
+
+</script>

@@ -1,0 +1,199 @@
+
+<div id="bread_rule">
+    <span class="layui-breadcrumb" style="margin-bottom: 50px; margin-left: 20px">
+      <a href="index.html">首页</a>
+      <a onclick="layui.addStrate.backPage()" href="javascript:void(0);">策略集</a>
+      <a onclick="layui.addRule.backPage()" href="javascript:void(0);">策略列表</a>
+      <a><cite>规则</cite></a>
+    </span>
+</div>
+
+<div id="addRule" class="layui-row main-content">
+    <div class="main-content-top">
+        <button type="button" class="layui-btn layui-btn-normal layui-btn-radius" id="addStrategy"
+                onclick="layui.addRule.viewAddRule()">+&nbsp;&nbsp;<%add_rule%>
+        </button>
+
+        <button class="layui-btn layui-btn-danger  layui-btn-radius layui-btn-xs" style="margin-left: 1280px"
+                onclick="layui.addRule.backPage()">返回前页面
+        </button>
+    </div>
+    <div class="main-content-form">
+        <form class="layui-form">
+            <div class="layui-form-item">
+                <div class="layui-input-inline">
+                    <input type="text" id="rule_name" autocomplete="off" v-bind:placeholder="search_rule"
+                           class="layui-input">
+                </div>
+                <div class="layui-input-inline main-form-state">
+                    <select id="rule_status" name="status" class="layui-select">
+                        <option value=""><%status%></option>
+                        <option value="1"><%enable%></option>
+                        <option value="0"><%disable%></option>
+                    </select>
+                </div>
+                <div class="layui-col-md1">
+                    <a class="layui-btn layui-btn-sm layui-btn-normal layui-btn-radius"
+                       onclick="layui.addRule.initTable()"><img src="../bamboo/img/query.png"><%query%></a>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="main-content-center">
+        <div id="ruleTable" class="layui-table" lay-filter="ruleEvent"></div>
+    </div>
+</div>
+
+<!--添加规则-->
+<script id="addOrUpdateRule" type="text/html">
+    <div id="ruleDiv1">
+        <div class="" style="padding: 0 20px;">
+            <form id="addOrUpdateRuleForm" class="layui-form" autocomplete="off">
+                <input type="hidden" id="ruleId" name="ruleId" value="{{d.ruleId}}">
+                <input type="hidden" id="strategyId" name="strategyId" value="{{d.strategyId}}">
+
+
+                <div class="layui-form-item content-form">
+                    <label class="layui-form-label"><%rule_name%>：</label>
+                    <div class="layui-input-block">
+                        <input type="text" id="ruleName" name="ruleName" v-bind:placeholder="rule_name"
+                               class="layui-input" value="{{ d.ruleName }}"/>
+                    </div>
+                </div>
+
+
+                <div class="layui-form-item">
+                    <label class="layui-form-label"><%field_name%>：</label>
+                    <div class="layui-input-block">
+                        <!--字段名字-->
+                        <select id="field_name" name="ruleType" class="layui-select" lay-filter="fieldName">
+
+                        </select>
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label"><%compare_rela%>：</label>
+                    <div class="layui-input-block">
+                        <!--比较关系-->
+                        <select id="compare_rela" name="compareRelaValue" class="layui-select">
+                        </select>
+                    </div>
+                </div>
+
+                <div class="layui-form-item">
+                    <label class="layui-form-label"><%rule_value%>：</label>
+                    <div class="layui-input-block">
+
+                        <input type="text" id="ruleValue" name="ruleValue" v-bind:placeholder="please_input_value"
+                               class="layui-input"/>
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label"><%risk_decision%>：</label>
+                    <div class="layui-input-block">
+
+                        <select id="risk_decision" name="riskDecision" class="layui-select">
+                            <option value="" disabled><%risk_decision%></option>
+                            <option value="1"><%pass%></option>
+                            <option value="0" selected><%refuse%></option>
+                        </select>
+                    </div>
+
+                </div>
+
+                <div class="layui-form-item layui-form-text">
+                    <label class="layui-form-label"><%description%>：</label>
+                    <div class="layui-input-block">
+                        <textarea name="description" id="description" placeholder="......" class="layui-textarea">{{d.description}}</textarea>
+                    </div>
+                </div>
+
+                <div id="hit_score_div" class="layui-form-item layui-form-text">
+                    <label class="layui-form-label"><%hit_score%>：</label>
+                    <div class="layui-input-block">
+                        <input type="text" id="hit_score" name="hitScore" class="layui-input"/>
+                    </div>
+                </div>
+
+                <div class="layui-form-item">
+                    <label class="layui-form-label"><%status%>：</label>
+                    <div class="layui-input-block">
+                        <input type="radio" id="enable" name="status" value="1" v-bind:title="enable" checked="">
+                        <input type="radio" id="disable" name="status" value="0" v-bind:title="disable">
+                    </div>
+                </div>
+
+                <div class="layui-form-item" style="text-align: center;margin-top:30px;">
+                    <div class="layui-inline">
+                        <button class="layui-btn layui-btn-radius layui-btn-md" lay-submit
+                                lay-filter="addOrUpdateRuleForm"><%now_submit%>
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</script>
+
+<!--查看规则-->
+<script id="viewRuleScript" type="text/html">
+    <div id="viewRuleDiv" class="" style="padding: 0 20px;">
+        <form id="addOrUpdateBillForm" class="layui-form" autocomplete="off">
+
+            <div class="layui-form-item content-form">
+                <label class="layui-form-label"><%rule_name%></label>
+                <label class="layui-form-label">{{d.ruleName}}</label>
+            </div>
+
+            <div class="layui-form-item content-form">
+                <label class="layui-form-label"><%field_name%></label>
+                <label class="layui-form-label">{{d.ruleType}}</label>
+            </div>
+
+            <div class="layui-form-item content-form ">
+                <label class="layui-form-label"><%compare_rela%></label>
+                <label class="layui-form-label"> {{d.compareRelaValue}}</label>
+            </div>
+
+            <div class="layui-form-item content-form">
+                <label class="layui-form-label"><%rule_value%></label>
+                <label class="layui-form-label"> {{d.ruleValue}}</label>
+            </div>
+
+            <div class="layui-form-item content-form">
+                <label class="layui-form-label"><%risk_decision%></label>
+                <label class="layui-form-label"> {{d.riskDecision}}</label>
+            </div>
+
+            <div class="layui-form-item content-form">
+                <label class="layui-form-label"><%description%></label>
+                <label class="layui-form-label"> {{d.description}}</label>
+            </div>
+
+            <div class="layui-form-item content-form">
+                <label class="layui-form-label"><%status%></label>
+                <label class="layui-form-label">{{d.status==1?'<%enable%>':'<%disable%>'}} </label>
+            </div>
+
+        </form>
+    </div>
+</script>
+
+<script type="text/javascript">
+
+    layui.use("addRule", function () {
+        var addRule = layui.addRule;
+
+        //初始化页面
+        addRule.initView();
+        //监听事件
+        addRule.tool();
+    })
+
+    layui.use('element', function () {
+        var element = layui.element; //导航的hover效果、二级菜单等功能，需要依赖element模块
+
+        element.render(".layui-breadcrumb")
+    });
+
+</script>

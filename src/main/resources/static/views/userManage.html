@@ -1,0 +1,126 @@
+<div id="parentUser">
+    <div class="layui-row main-header">
+        <span><%manageCenter%>&nbsp;>&nbsp;<%userManage%></span><!-- 管理中心 用户管理 -->
+    </div>
+    <div class="layui-row main-content">
+        <div class="main-content-top">
+            <button id="addUser" class="layui-btn layui-btn-normal layui-btn-radius" onclick="layui.userManage.addUser()">+&nbsp;&nbsp;<%add_user%></button><!-- 添加用户 -->
+        </div>
+        <div class="main-content-form">
+            <form class="layui-form">
+                <div class="layui-form-item">
+                    <div class="layui-input-inline">
+                        <input type="text" id="account_company_mobile" name="account_company_mobile" autocomplete="off" v-bind:placeholder="user_account_company_name_phone" class="layui-input"><!-- 用户账号/公司名称/手机号 -->
+                    </div>
+                    <div class="layui-input-inline main-form-state">
+                        <select id="state" name="state" class="layui-select">
+                            <option value=""><%status%></option><!-- 状态 -->
+                            <option value="0"><%enable%></option><!-- 启用 -->
+                            <option value="1"><%disable%></option><!-- 禁用 -->
+                        </select>
+                    </div>
+                    <div id="role" class="layui-input-inline">
+                        <select id="roleId" class="layui-select">
+                        </select>
+                    </div>
+                    <div class="layui-col-md1">
+                        <a class="layui-btn layui-btn-sm layui-btn-normal layui-btn-radius" onclick="layui.userManage.initTable()"><img src="../bamboo/img/query.png"><%query%></a><!-- 查询 -->
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="main-content-center">
+            <div id="userManageTable" class="layui-table" lay-filter="userManageEvent"></div>
+        </div>
+    </div>
+</div>
+
+<div id="subUser" style="display: none;"></div>
+
+
+<script id="addOrUpdateUser" type="text/html">
+    <div class="" style="padding: 20px;">
+        <form id="addOrUpdateUserForm" class="layui-form" autocomplete="off">
+            <input type="hidden" name="userId" value="{{d.userId}}">
+            <div class="layui-form-item">
+                <label class="layui-form-label"><%user_account%></label><!-- 用户账户 -->
+                <div class="layui-input-block">
+                    <input type="text" id="userAccount" name="userAccount" v-bind:placeholder="user_account" lay-verify="userAccount" class="layui-input" value="{{d.userAccount}}" /><!-- 用户账户 -->
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label"><%company_name%></label><!-- 公司全称 -->
+                <div class="layui-input-block">
+                    <input type="text" name="companyName" v-bind:placeholder="company_name" lay-verify="companyName" class="layui-input" value="{{d.companyName}}" /><!-- 公司全称 -->
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label"><%phone_number%></label><!-- 手机号 -->
+                <div class="layui-input-block">
+                    <input type="text" name="userPhone" v-bind:placeholder="phone_number" lay-verify="userPhone" class="layui-input" value="{{d.userPhone}}" /><!-- 手机号 -->
+                </div>
+            </div>
+            {{# if(d.type == 0){ }}
+            <div class="layui-form-item">
+                <label class="layui-form-label"><%set_password%></label><!-- 设置密码 -->
+                <div class="layui-input-block">
+                    <input type="password" id="password" name="password" v-bind:placeholder="set_password" lay-verify="password" class="layui-input" value="{{d.password}}" /><!-- 设置密码 -->
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label"><%confirm_password%></label><!-- 确认密码 -->
+                <div class="layui-input-block">
+                    <input type="password" name="confirmPassword" v-bind:placeholder="confirm_password" lay-verify="confirmPassword" class="layui-input"  /><!-- 确认密码 -->
+                </div>
+            </div>
+            {{# }else{ }}
+            {{# } }}
+            <div class="layui-form-item">
+                <label class="layui-form-label"><%role%></label><!-- 角色 -->
+                <div class="layui-input-block">
+                    <select id="roleIdTwo" name="roleId" class="layui-select" lay-verify="required">
+                    </select>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label"><%status%></label><!-- 状态 -->
+                <div class="layui-input-block">
+                    <input type="radio" id="enable" name="state" value="0" v-bind:title="enable" checked=""><!-- 启用 -->
+                    <input type="radio" id="disable" name="state" value="1" v-bind:title="disable"><!-- 禁用 -->
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label"><%description%></label><!-- 描述 -->
+                <div class="layui-input-block">
+                    <textarea id="descr" name="descr" v-bind:placeholder="description" class="layui-textarea">{{d.descr}}</textarea><!-- 描述 -->
+                </div>
+            </div>
+            <div class="layui-form-item form-btn">
+                <div class="layui-inline">
+                    <button class="layui-btn layui-btn-md" lay-submit lay-filter="addOrUpdateUserForm"><%now_submit%></button><!-- 立即提交 -->
+                </div>
+            </div>
+        </form>
+    </div>
+</script>
+
+<script id="resetPwd" type="text/html">
+    <div class="" style="padding: 20px;">
+        <div class="layui-form-item"><%confirm_reset_pwd%></div><!-- 确认重置密码操作？ -->
+        <div class="layui-form-item" style="color: red;"><%note%>：<%reset_pwd_is%>123456</div><!-- 备注 重置后的密码为 -->
+    </div>
+</script>
+
+
+
+
+<script type="text/javascript">
+    layui.use("userManage",function(){
+        var userManage = layui.userManage;
+        //初始化页面
+        userManage.initView();
+        //监听事件
+        userManage.tool();
+    })
+
+</script>

@@ -1,0 +1,32 @@
+{
+  "code":200,
+  "message":"SUCCESS",
+  "data":[
+    {
+      "date":"11-28",
+      "recharge":500,
+      "consume":400
+    },{
+      "date":"11-29",
+      "recharge":1500,
+      "consume":400
+    },{
+      "date":"11-30",
+      "recharge":4500,
+      "consume":2500
+    },{
+      "date":"12-01",
+      "recharge":2500,
+      "consume":500
+    },{
+      "date":"12-02",
+      "recharge":900,
+      "consume":300
+    },{
+      "date":"12-03",
+      "recharge":1200,
+      "consume":500
+    }
+  ]
+
+}

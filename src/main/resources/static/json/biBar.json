@@ -1,0 +1,32 @@
+{
+  "code":200,
+  "message":"SUCCESS",
+  "data":[
+    {
+      "name":"A公司",
+      "recharge":500,
+      "consume":400
+    },{
+      "name":"B公司",
+      "recharge":1500,
+      "consume":400
+    },{
+      "name":"C公司",
+      "recharge":4500,
+      "consume":2500
+    },{
+      "name":"D公司",
+      "recharge":2500,
+      "consume":500
+    },{
+      "name":"E公司",
+      "recharge":900,
+      "consume":300
+    },{
+      "name":"F公司",
+      "recharge":1200,
+      "consume":500
+    }
+  ]
+
+}

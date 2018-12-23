@@ -1,0 +1,191 @@
+<div id="bill" class="layui-row main-content">
+
+    <div class="main-content-form">
+        <form class="layui-form">
+            <div class="layui-form-item">
+                <div class="layui-input-inline">
+                    <input type="text" id="account_name"  autocomplete="off" v-bind:placeholder="search_bill" class="layui-input">
+                </div>
+
+                <div id="company_name_div" class="layui-input-inline main-form-state" style="width: 130px">
+                    <select id="company_name" name="companyName" class="layui-select">
+                    </select>
+                </div>
+
+                <div class="layui-col-md1" id="query">
+                    <a class="layui-btn layui-btn-sm layui-btn-normal layui-btn-radius" onclick="layui.billManage.initTable()"><img src="../bamboo/img/query.png"><%query%></a>
+                </div>
+
+            </div>
+        </form>
+    </div>
+    <div class="main-content-center">
+        <div id="billManageTable" class="layui-table" lay-filter="billManageEvent"></div>
+    </div>
+</div>
+
+<script type="text/html" id="toolbarDemo">
+    <div class="layui-btn-container">
+
+    </div>
+</script>
+
+<!--充值-->
+<script id="addOrUpdateBill" type="text/html">
+    <div id="rechargeDiv" class="" style="padding: 0 20px;">
+        <form id="addOrUpdateBillForm" class="layui-form" autocomplete="off">
+            <input type="hidden" name="billId" value="{{d.data.billId}}">
+            <input type="hidden" name="balance" value="{{d.data.balance}}" >
+
+
+            <div class="layui-form-item content-form">
+                <label class="layui-form-label" style="width: 150px"><%recharge_account%>：</label>
+                <label class="layui-form-label">{{d.data.account}}</label>
+            </div>
+
+            <div class="layui-form-item content-form">
+                <label class="layui-form-label" style="width: 150px"><%company_name%>：</label>
+                <label class="layui-form-label">{{d.data.companyName}}</label>
+
+            </div>
+
+            <div class="layui-form-item content-form">
+                <label class="layui-form-label" style="width: 150px"><%phone%>：</label>
+                <label class="layui-form-label">{{d.data.phoneNumber}}</label>
+            </div>
+
+            <div class="layui-form-item content-form">
+                <label class="layui-form-label"><%recharge_money%>：</label>
+                <div class="layui-input-block">
+                    <input type="text" name="rechargeNum" v-bind:placeholder="recharge_money"  class="layui-input"/>
+                </div>
+            </div>
+
+            <div class="layui-form-item" style="text-align: center;margin-top:30px;">
+                <div class="layui-inline">
+                    <button class="layui-btn layui-btn-radius layui-btn-md" lay-submit lay-filter="addOrUpdateBillForm"><%now_submit%></button>
+                </div>
+            </div>
+        </form>
+    </div>
+</script>
+
+<!--入账明细-->
+<script id="rechargeRecord" type="text/html">
+
+    <div id="recharge" class="" style="padding: 0 20px;">
+            <div>
+                <div class="layui-form-item content-form">
+                    <label class="layui-form-label" style="width: 150px"><%recharge_account%>：</label>
+                    <label class="layui-form-label">{{d.data.account}}</label>
+
+                </div>
+
+                <div class="layui-form-item content-form">
+                    <label class="layui-form-label" style="width: 150px"><%company_name%>：</label>
+                    <label class="layui-form-label">{{d.data.companyName}}</label>
+                </div>
+
+                <div class="layui-form-item content-form">
+                    <label class="layui-form-label" style="width: 150px"><%phone%>：</label>
+                    <label class="layui-form-label">{{d.data.phoneNumber}}</label>
+                </div>
+
+                <div class="layui-form-item content-form">
+                    <label class="layui-form-label" style="width: 150px"><%now_amount%>：</label>
+                    <label class="layui-form-label">{{d.data.balance}}</label>
+                </div>
+            </div>
+        <hr style="height:1px;border:none;border-top:1px solid #555555;" />
+
+        <div class="layui-inline">
+            <label class="layui-form-label select_width"><%recharge_range%></label>
+            <div class="layui-input-inline">
+                <input type="text" class="layui-input" id="rechargeDate" placeholder=" - ">
+            </div>
+        </div>
+
+
+
+        <button class="layui-btn" data-type="reload"><img src="../bamboo/img/query.png"><%query%></button>
+
+        <div class="main-content-center">
+            <div id="rechargeRecordTable" class="layui-table"></div>
+        </div>
+
+    </div>
+
+</script>
+
+<!--消费明细-->
+<script id="consumRecord" type="text/html">
+
+    <div id="consumRecordDiv" class="" style="padding: 0 20px;">
+        <div class="layui-form-item content-form ">
+            <label class="layui-form-label" style="width: 150px"><%recharge_account%>：</label>
+            <label class="layui-form-label"> {{d.data.account}}</label>
+
+
+            <label class="layui-form-label show-right" style="width: 150px"><%phone%>：</label>
+            <label class="layui-form-label">{{d.data.phoneNumber}}</label>
+        </div>
+
+        <div class="layui-form-item content-form">
+            <label class="layui-form-label" style="width: 150px"><%company_name%>：</label>
+            <label class="layui-form-label">  {{d.data.companyName}}</label>
+
+            <label class="layui-form-label" style="width: 150px"><%now_amount%>：</label>
+            <label class="layui-form-label">{{d.data.balance}}</label>
+        </div>
+
+        <hr style="height:1px;border:none;border-top:1px solid #555555;" />
+
+        <div class="layui-input-inline main-form-state">
+            <select id="app_choose" name="appName" class="layui-select">
+                <option value="" disabled selected><%choose_application%></option>
+            </select>
+        </div>
+
+        <div class="layui-input-inline">
+            <input type="text"id="projectName"  autocomplete="off" v-bind:placeholder="project_name" class="layui-input">
+        </div>
+
+        <div class="layui-inline">
+            <label class="layui-form-label" style="width: 150px"><%recharge_range%></label>
+            <div class="layui-input-inline">
+                <input type="text" class="layui-input" id="consumeDate" placeholder="yyyy-MM-dd HH:mm:ss">
+            </div>
+        </div>
+
+        <button class="layui-btn"><img src="../bamboo/img/query.png"><%query%></button>
+
+
+        <div class="main-content-center">
+            <div id="consumRecordTable" class="layui-table"></div>
+        </div>
+
+    </div>
+</script>
+
+<script type="text/javascript">
+
+    layui.use("billManage",function(){
+        var billManage= layui.billManage;
+        var lat = layui.laydate;
+        lat.render({
+            elem: '#rechargeDate'
+            ,range: true
+        });
+        //初始化页面
+        billManage.initView();
+        //监听事件
+        billManage.tool();
+
+        //日期范围
+
+    })
+
+
+
+
+</script>

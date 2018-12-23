@@ -1,0 +1,134 @@
+<div id="menuManage">
+    <div class="layui-row main-header">
+        <span><%manageCenter%>&nbsp;>&nbsp;<%menuManage%></span><!-- 管理中心 菜单管理 -->
+    </div>
+    <div class="layui-row main-content">
+        <div class="main-content-top">
+            <button class="layui-btn layui-btn-normal layui-btn-radius" onclick="layui.menuManage.viewAddMenu()">+&nbsp;&nbsp;<%add_menu%></button><!-- 添加菜单 -->
+        </div>
+        <div class="main-content-center">
+            <div id="permTable"></div>
+        </div>
+    </div>
+</div>
+
+<script id="addOrUpdateMenu" type="text/html">
+    <div class="" style="padding: 20px;">
+        <form id="addOrUpdateMenuForm" class="layui-form" autocomplete="off">
+            <input type="hidden" id="menuId" name="menuId" value="{{d.menuId}}">
+            <input type="hidden" id="parentId" name="parentId" value="{{d.parentId}}">
+            <div class="layui-form-item">
+                <label class="layui-form-label"><%menu_type%></label><!-- 添加菜单 -->
+                <div class="layui-input-block">
+                    <input type="radio" id="contents" name="menuType" lay-filter="menuType" value="0" v-bind:title="content" checked=""><!-- 目录 -->
+                    <input type="radio" id="menu" name="menuType" lay-filter="menuType" value="1" v-bind:title="menu"><!-- 菜单 -->
+                </div>
+            </div>
+            <div class="layui-form-item content-form">
+                <label class="layui-form-label"><%directory_name%></label><!-- 目录名称 -->
+                <div class="layui-input-block">
+                    <input type="text" id="contentName" name="contentName" v-bind:placeholder="directory_name" class="layui-input" value="{{d.menuName}}" /><!-- 目录名称 -->
+                </div>
+            </div>
+            <div class="layui-form-item content-form">
+                <label class="layui-form-label"><%directory_icon%></label><!-- 目录图标 -->
+                <div class="layui-input-block">
+                    <input type="text" id="menuIcon" name="menuIcon" v-bind:placeholder="directory_icon" class="layui-input" value="{{d.menuIcon}}" /><!-- 目录图标 -->
+                </div>
+            </div>
+            <div class="layui-form-item menu-form">
+                <label class="layui-form-label"><%directory%></label><!-- 所属目录 -->
+                <div class="layui-input-block">
+                    <select id="ownContent" name="ownContent" class="layui-select" lay-filter='ownContent' >
+                    </select>
+                </div>
+            </div>
+            <div class="layui-form-item menu-form">
+                <label class="layui-form-label"><%menu_name%></label><!-- 菜单名称 -->
+                <div class="layui-input-block">
+                    <input type="text" id="menuName" name="menuName" v-bind:placeholder="menu_name" class="layui-input" value="{{d.menuName}}" /><!-- 菜单名称 -->
+                </div>
+            </div>
+            <div class="layui-form-item menu-form">
+                <label class="layui-form-label"><%menu_link%></label><!-- 菜单链接 -->
+                <div class="layui-input-block">
+                    <input type="text" id="menuUrl" name="menuUrl" placeholder="E.g：#views/homeIndex.html" class="layui-input" value="{{d.menuUrl}}" />
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label"><%menu_order%></label><!-- 菜单顺序 -->
+                <div class="layui-input-block">
+                    <input type="text" id="orderNum" name="orderNum" v-bind:placeholder="menu_order" class="layui-input" value="{{d.orderNum}}" /><!-- 菜单顺序 -->
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label"><%status%></label><!-- 状态 -->
+                <div class="layui-input-block">
+                    <input type="radio" id="enable" name="state" value="0" v-bind:title="enable" checked=""><!-- 启用 -->
+                    <input type="radio" id="disable" name="state" value="1" v-bind:title="disable"><!-- 禁用 -->
+                </div>
+            </div>
+            <div class="layui-form-item form-btn">
+                <div class="layui-inline">
+                    <button class="layui-btn layui-btn-md" lay-submit lay-filter="addOrUpdateMenuForm"><%now_submit%></button><!-- 立即提交 -->
+                </div>
+            </div>
+        </form>
+    </div>
+</script>
+
+
+
+<script id="view" type="text/html">
+    <table class="layui-table">
+        <thead>
+        <tr>
+            <th><%menu_name%></th><!-- 菜单名称 -->
+            <th><%menu_type%></th><!-- 菜单类型 -->
+            <th><%menu_link%></th><!-- 菜单链接 -->
+            <th><%order%></th><!-- 排序 -->
+            <th><%status%></th><!-- 状态 -->
+            <th><%operation%></th><!-- 操作 -->
+        </tr>
+        </thead>
+        <tbody>
+        {{# layui.each(d.rows,function(index,r){ }}
+        <tr>
+            {{# if(r.parentId == 0){ }}
+            <!--<td><img src="../bamboo/img/{{r.menuIcon}}.png">{{r.menuName}}</td>-->
+            <td><img src="../bamboo/img/{{r.menuIcon}}.png">{{r.menuName}}</td>
+            {{# }else { }}
+            <td>{{r.menuName}}</td>
+            {{# } }}
+            <td>{{r.menuType==0?'<%content%>':'<%menu%>'}}</td><!-- 菜单 功能 -->
+            {{# if(r.parentId == 0){ }}
+            <td></td>
+            {{# }else { }}
+            <td>{{r.menuUrl}}</td>
+            {{# } }}
+            <td>{{r.orderNum}}</td>
+            <td>{{r.state==0?'<%enable%>':'<%disable%>'}}</td><!-- 启用 禁用 -->
+            <td><a class="layui-btn layui-btn-normal layui-btn-sm" onclick="layui.menuManage.editMenu('{{r.menuId}}')"><%edit%></a><!-- 编辑 -->
+                <!--<a class="layui-btn layui-btn-danger layui-btn-sm" onclick="layui.menuManage.delMenu('{{r.menuId}}')"><%del%></a>&lt;!&ndash; 删除 &ndash;&gt;-->
+            </td>
+        </tr>
+        {{# }); }}
+        </tbody>
+    </table>
+</script>
+
+<script type="text/javascript">
+    layui.use("menuManage",function(){
+        var menuManage = layui.menuManage;
+        //初始化页面
+        menuManage.initView();
+        //监听事件
+        menuManage.tool();
+    })
+</script>
+
+<!--<script type="text/javascript" src="../bootstrap-table/bootstrap-table.min.js"></script>-->
+<!--<script type="text/javascript" src="../bootstrap-table/bootstrap-table-mobile.min.js"></script>-->
+<!--<script type="text/javascript" src="../module/menuManage.js"></script>-->
+
+

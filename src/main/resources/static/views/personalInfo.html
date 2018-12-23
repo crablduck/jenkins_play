@@ -1,0 +1,70 @@
+<div id="mainIndex">
+    <div class="layui-row main-header">
+        <span><%homeIndex%>&nbsp;>&nbsp;<%personalInfo%></span><!-- 首页 个人信息 -->
+    </div>
+
+    <div id="userInfo" class="layui-row main-content">
+    </div>
+</div>
+
+<script id="personalInfo" type="text/html">
+    <div class="layui-form-item">
+        <label class="layui-form-label"><%user_account%>：</label><!-- 用户账号 -->
+        <label class="layui-form-label layui-form-label-content">{{d.userAccount}}</label>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label"><%user_name%>：</label><!-- 用户姓名 -->
+        <label class="layui-form-label layui-form-label-content">{{d.username}}</label>
+    </div>
+    <div class="layui-form-item">
+        {{# if(d.userPhone){ }}
+        <label class="layui-form-label"><%phone_number%>：</label><!-- 手机号 -->
+        <label class="layui-form-label layui-form-label-content">{{d.userPhone}}</label>
+        {{# }else{ }}
+        {{# } }}
+    </div>
+    <div class="layui-form-item">
+        {{# if(d.createrAccount){ }}
+        <label class="layui-form-label"><%parent_account%>：</label><!-- 父级账号 -->
+        <label class="layui-form-label layui-form-label-content">{{d.createrAccount}}</label>
+        {{# }else{ }}
+        {{# } }}
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label"><%role%>：</label><!-- 角色 -->
+        {{# if(d.roleNames){ }}
+        <label class="layui-form-label layui-form-label-content">{{d.roleNames}}</label>
+        {{# }else{ }}
+        <label class="layui-form-label layui-form-label-content"></label>
+        {{# } }}
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label"><%status%>：</label><!-- 状态 -->
+        {{# if(d.state == 0){ }}
+        <label class="layui-form-label layui-form-label-content"><%enable%></label><!-- 启用 -->
+        {{# }else{ }}
+        <label class="layui-form-label layui-form-label-content"><%disable%></label><!-- 禁用 -->
+        {{# } }}
+    </div>
+    <div class="layui-form-item">
+        {{# if(d.createrName){ }}
+        <label class="layui-form-label"><%creater%>：</label><!-- 创建人 -->
+        <label class="layui-form-label layui-form-label-content">{{d.createrName}}</label>
+        {{# }else{ }}
+        {{# } }}
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label"><%create_time%>：</label><!-- 创建时间 -->
+        <label class="layui-form-label layui-form-label-content">{{d.createDate}}</label>
+    </div>
+</script>
+
+
+
+<script type="text/javascript">
+    layui.use("personalInfo",function(){
+        var personalInfo = layui.personalInfo;
+        //初始化页面
+        personalInfo.initView();
+    })
+</script>

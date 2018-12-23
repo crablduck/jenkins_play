@@ -1,0 +1,13 @@
+//package cn.wlh;
+//import  cn.wlh.model.Person;
+//
+////年龄规则
+//rule " 大于16扣60分"
+//    when
+//        $p: Person(age > 16)
+//    then
+//        $p.setDescriptions("我要16岁青少年");
+//        $p.setOrder_status(0);
+//        $p.setTotalScore(  $p.getTotalScore() - 25);
+//end
+

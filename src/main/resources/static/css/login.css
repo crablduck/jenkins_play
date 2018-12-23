@@ -1,0 +1,81 @@
+@media (min-width: 1666px) {
+    .login-form {
+        top: 210px;
+        right: 250px;
+    }
+    .login-content img {
+        margin: 80px 0 0 230px;
+        width: 35%;
+        height: 35%;
+    }
+}
+@media (max-width: 1666px) {
+    .login-form {
+        top: 150px;
+        right: 130px;
+    }
+    .login-content img {
+        margin: 80px 0 0 80px;
+        width: 45%;
+        height: 45%;
+    }
+}
+html,body {
+    height: 100%;
+    margin: 0px;
+    padding: 0px;
+    background-color: #2545AD;
+}
+.login-logo img {
+    margin: 30px 0 0 40px;
+    width: 25%;
+    height: 25%;
+}
+.login-form {
+    position: absolute;
+    width: 300px;
+    height: 340px;
+    padding: 40px 40px;
+    background-color: rgba(255,255,255,0.16);
+}
+.login-form h1 {
+    text-align: center;
+    font-family: "MicrosoftYaHei";
+    font-size: 30px;
+    color: #FEFEFE;
+    margin-bottom: 30px;
+}
+.login-form .login-form-logo {
+    position: absolute;
+    margin: 10px 8px;
+}
+.login-form .layui-input {
+    padding-left: 50px;
+    border-radius: 6px;
+    height: 50px;
+}
+.login-form .login-form-verify {
+    float: left;
+    width: 170px;
+}
+.login-form .login-form-canvas {
+    float: left;
+    width: 120px;
+    margin-left: 10px;
+    margin-top: 3px;
+}
+.login-form .layui-form-checkbox[lay-skin=primary] span {
+    font-size: 14px;
+    color: #FEFEFE;
+}
+.login-form .login-btn {
+    border-radius: 6px;
+    background-color: #3E7CD1;
+    width:300px;
+    height:40px;
+    line-height: 40px;
+    font-size: 20px;
+}
+.login-form .layui-input {
+    height: 40px;
+}

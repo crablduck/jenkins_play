@@ -1,0 +1,46 @@
+html{
+    height: 100%;
+    font-family: PingFangSC-Light,'helvetica neue','hiragino sans gb',arial,'microsoft yahei ui','microsoft yahei',simsun,sans-serif;
+    font-size: 14px;
+}
+.header {
+    position:fixed;
+    top:0px;
+    left:0px;
+    height: 74px;
+    font-size: 14px;
+    line-height: 64px;
+    color: white;
+    z-index: 11;
+    background-color: #FFF;
+    width:100%;
+}
+
+.left {
+    position:fixed;
+    left:0px;
+    bottom:0px;
+    top:74px;
+    width: 260px;
+    z-index: 1;
+    box-shadow: 1px 1px 5px 1px #CCC;
+    background-color: #FFF;
+    vertical-align: top;
+    overflow-x: scroll;
+}
+.left .menu {
+    list-style: none;
+    margin: 0px;
+    padding-left: 30px;
+}
+.left .menu li {
+    height:30px;
+    line-height:30px;
+}
+.left .menu li a{
+    color:black;
+}
+.left .menu li a:hover{
+    color:red;
+    text-decoration: none;
+}

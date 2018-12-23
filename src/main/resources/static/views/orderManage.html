@@ -1,0 +1,145 @@
+<div class="layui-row main-content">
+
+    <div id="orderManageLan">
+
+
+        <div class="main-content-form">
+            <form class="layui-form">
+                <div class="layui-form-item">
+                    <div class="layui-input-inline">
+                        <input type="text" id="account_name" autocomplete="off" v-bind:placeholder="search_field"
+                               class="layui-input">
+                    </div>
+
+                    <div id="companySele" class="layui-input-inline main-form-state" style="width: 130px">
+                        <select id="company_name" name="companyName" class="layui-select" >
+                        </select>
+                    </div>
+
+                    <div id="appSele" class="layui-input-inline main-form-state" style="width: 130px">
+                        <select id="application_name" name="applicationName" class="layui-select" >
+                            <option value=""><%choose_application%></option>
+                        </select>
+
+
+                    </div>
+
+                    <div class="layui-inline">
+                        <label class="layui-form-label" style="width: 150px;"><%recharge_range%></label>
+                        <div class="layui-input-inline">
+                            <input type="text" name="" class="layui-input" id="orderDate" placeholder=" yyyy-MM-dd">
+                        </div>
+                    </div>
+
+                    <div class="layui-input-inline main-form-state">
+                        <select id="status" name="applicationName" class="layui-select">
+                            <option value="" disabled selected><%status%></option>
+                            <option value="1"><%pass%></option>
+                            <option value="0"><%refuse%></option>
+                        </select>
+                    </div>
+
+                    <div class="layui-inline">
+                        <a class="layui-btn layui-btn-sm layui-btn-normal layui-btn-radius"
+                           onclick="layui.orderManage.initTable()"><img src="../bamboo/img/query.png"><%query%></a>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="main-content-center">
+            <div id="orderManageTable" class="layui-table" lay-filter="orderManageEvent"></div>
+        </div>
+
+    </div>
+</div>
+
+<!--订单明细-->
+<script id="orderDetail" type="text/html">
+    <div id="order_detail">
+        <div class="layui-tab" lay-filter="demo" lay-allowclose="true">
+            <ul class="layui-tab-title">
+                <li class="layui-this" lay-id="11"><%risk_result%></li>
+                <li lay-id="22"><%third_party_consumption%></li>
+                <li lay-id="33" id="baseResult">
+                    <%base_result%>
+                </li>
+            </ul>
+            <div class="layui-tab-content">
+                <div class="layui-tab-item layui-show">
+                    <div class="" style="padding: 0 20px;">
+                        <form id="addOrUpdateBillForm" class="layui-form" autocomplete="off">
+                            <input type="hidden" name="accountId" value="{{d.data.id}}">
+                            <input type="hidden" name="preBalance" value="{{d.data.balance}}">
+
+                            <div class="layui-form-item content-form">
+                                <label class="layui-form-label"><%order_no%></label>
+                                <label class="layui-form-label">{{d.data.order_no}}</label>
+                            </div>
+
+                            <div class="layui-form-item content-form">
+                                <label class="layui-form-label"><%what_company%></label>
+                                <label class="layui-form-label">{{d.data.company_name}}</label>
+                            </div>
+
+                            <div class="layui-form-item content-form ">
+                                <label class="layui-form-label"><%app%></label>
+                                <label class="layui-form-label"> {{d.data.app_name}}</label>
+                            </div>
+
+                            <div class="layui-form-item content-form">
+                                <label class="layui-form-label"><%idcard_num%></label>
+                                <label class="layui-form-label"> {{d.data.idcard}}</label>
+                            </div>
+
+                            <div class="layui-form-item content-form">
+                                <label class="layui-form-label"><%total_score%></label>
+                                <label class="layui-form-label"> {{d.data.totalScore}}</label>
+                            </div>
+
+                            <div class="layui-form-item content-form">
+                                <label class="layui-form-label"><%risk_result%></label>
+                                <label class="layui-form-label">
+                                    {{d.data.order_status==1?'<%pass%>':'<%refuse%>'}}</label>
+                            </div>
+                        </form>
+                        <div id="order_result" class="layui-table"></div>
+                    </div>
+                </div>
+                <div class="layui-tab-item"><%declaration%></div>
+                <div class="layui-tab-item">
+                    <div id="order_base_result" class="layui-table"></div>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+
+</script>
+
+<script type="text/html" id="toolbarOrder">
+    <div class="layui-btn-container">
+        <button class="layui-btn layui-btn-sm" lay-event="getCheckData">获取选中行数据</button>
+        <button class="layui-btn layui-btn-sm" lay-event="getCheckLength">获取选中数目</button>
+        <button class="layui-btn layui-btn-sm" lay-event="isAll">验证是否全选</button>
+    </div>
+</script>
+
+<script type="text/javascript">
+
+    layui.use("orderManage", function () {
+        var orderManage = layui.orderManage;
+
+        var laydate = layui.laydate;
+        //日期范围
+
+        //初始化页面
+        orderManage.initView();
+        //监听事件
+        orderManage.tool();
+
+
+    })
+
+
+</script>

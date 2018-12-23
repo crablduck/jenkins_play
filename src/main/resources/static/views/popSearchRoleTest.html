@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>addRule</title>
+</head>
+<body>
+
+<!-- 选择角色的按钮 -->
+<div class="layui-row" id="popSearchRoleTest" style="display:none;">
+    <div class="layui-col-md11">
+        <form class="layui-form" lay-filter="formTestFilter2121" >
+            <div class="layui-form-item">
+                <label class="layui-form-label">用户名：</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="userName"  class="layui-input">
+                </div>
+                <label class="layui-form-label">密码：</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="password"  class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">角色：</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="roleName" class="layui-input">
+                </div>
+                <div class="layui-input-inline">
+                    <button onclick="selectRole()" class="layui-btn layui-btn-primary layui-btn-radius">选择角色</button>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">备注：</label>
+                <div class="layui-input-block">
+                    <textarea placeholder="请输入内容" class="layui-textarea" name="userDescription"></textarea>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <div class="layui-input-block">
+                    <button type="button" class="layui-btn layui-btn-normal">提交</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+</body>
+</html>

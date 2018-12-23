@@ -1,0 +1,108 @@
+<div id="mainIndex">
+    <div class="layui-row main-header">
+        <span><%manageCenter%>&nbsp;>&nbsp;<%roleManage%></span><!-- 管理中心 角色管理 -->
+    </div>
+    <div class="layui-row main-content">
+        <div class="main-content-top">
+            <button class="layui-btn layui-btn-normal layui-btn-radius" onclick="layui.roleManage.addRole()">+&nbsp;&nbsp;<%add_role%></button><!-- 添加角色 -->
+        </div>
+        <div class="main-content-form">
+            <form class="layui-form">
+                <div class="layui-form-item">
+                    <div class="layui-input-inline">
+                        <select id="roleId" class="layui-select">
+                        </select>
+                    </div>
+                    <!--<div class="layui-input-inline main-form-state">-->
+                    <!--<select id="state" name="state" class="layui-select">-->
+                    <!--<option value="">状态</option>-->
+                    <!--<option value="0">启用</option>-->
+                    <!--<option value="1">禁用</option>-->
+                    <!--</select>-->
+                    <!--</div>-->
+                    <div class="layui-col-md1">
+                        <a class="layui-btn layui-btn-sm layui-btn-normal layui-btn-radius" onclick="layui.roleManage.initTable()"><img src="../bamboo/img/query.png"><%query%></a><!-- 添加角色 -->
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="main-content-center">
+            <div id="roleManageTable" class="layui-table" lay-filter="roleManageEvent"></div>
+        </div>
+    </div>
+</div>
+
+<script id="roleAuth" type="text/html">
+    <div class="" style="padding: 20px;">
+        <form class="layui-form">
+            <input type="hidden" name="roleId" value="{{d.roleId}}">
+            <div class="layui-form-item">
+                <div id="menuTree"></div>
+            </div>
+            <div class="layui-form-item form-btn">
+                <div class="layui-inline">
+                    <!--<a class="layui-btn layui-btn-normal layui-btn-radius" id="now_submit">立即提交</a>-->
+                    <button class="layui-btn layui-btn-md" lay-submit lay-filter="nowSubmit"><%now_submit%></button><!-- 立即提交 -->
+                </div>
+            </div>
+        </form>
+    </div>
+</script>
+
+
+
+<script id="addOrUpdateRole" type="text/html">
+    <div class="" style="padding: 20px;">
+        <form id="addOrUpdateRoleForm" class="layui-form" autocomplete="off">
+            <input type="hidden" name="roleId" value="{{d.roleId}}">
+            <div class="layui-form-item">
+                <label class="layui-form-label"><%role_name%></label><!-- 角色名称 -->
+                <div class="layui-input-block">
+                    <input type="text" name="roleName" v-bind:placeholder="role_name" lay-verify="roleName" class="layui-input" value="{{d.roleName}}" /><!-- 角色名称 -->
+                </div>
+            </div>
+            <!--<div class="layui-form-item">-->
+                <!--<label class="layui-form-label">状态</label>-->
+                <!--<div class="layui-input-block">-->
+                    <!--<input type="radio" id="enable" name="state" value="0" title="启用" checked="">-->
+                    <!--<input type="radio" id="disable" name="state" value="1" title="禁用">-->
+                <!--</div>-->
+            <!--</div>-->
+            <div class="layui-form-item">
+                <label class="layui-form-label"><%role_level%></label><!-- 角色级别 -->
+                <div class="layui-input-block">
+                    <select id="roleLevel" name="roleLevel" class="layui-select">
+                        <option value="1"><%one_level%></option><!-- 一级 -->
+                        <option value="2"><%two_level%></option><!-- 二级 -->
+                        <option value="3"><%three_level%></option><!-- 三级 -->
+                    </select>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label"><%description%></label><!-- 描述 -->
+                <div class="layui-input-block">
+                    <textarea id="descr" name="descr" v-bind:placeholder="description" class="layui-textarea">{{d.descr}}</textarea><!-- 描述 -->
+                </div>
+            </div>
+            <div class="layui-form-item form-btn">
+                <div class="layui-inline">
+                    <button class="layui-btn layui-btn-md" lay-submit lay-filter="addOrUpdateRoleForm"><%now_submit%></button><!-- 立即提交 -->
+                </div>
+            </div>
+        </form>
+    </div>
+</script>
+
+
+
+
+<script type="text/javascript">
+    layui.use("roleManage",function(){
+        var roleManage = layui.roleManage;
+        //初始化页面
+        roleManage.initView();
+        //监听事件
+        roleManage.tool();
+    })
+
+</script>

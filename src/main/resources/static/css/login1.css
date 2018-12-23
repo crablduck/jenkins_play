@@ -1,0 +1,65 @@
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #2545AD;
+}
+.login-logo img {
+    margin: 30px 0 0 45px;
+    width: 20%;
+    height: 30%;
+}
+.login-content {
+    margin-top: 5%;
+    margin-left: 5%;
+}
+.login-content .layui-col-md7 img {
+    /*margin: 50px 0 0 50px;*/
+    width: 58%;
+    height: 58%;
+}
+.login-content .layui-form {
+    width: 305px;
+    /*height:405px;*/
+    padding: 65px;
+    background-color: rgba(255,255,255,0.16);
+}
+.login-content .layui-form h1 {
+    text-align: center;
+    font-family: "MicrosoftYaHei";
+    font-size: 36px;
+    color: #FEFEFE;
+    margin-bottom: 55px;
+}
+.login-content .layui-form .login-form-logo {
+    position: absolute;
+    margin: 12px 10px;
+}
+.login-content .layui-form .layui-input {
+    padding-left: 50px;
+    border-radius: 6px;
+    height: 50px;
+}
+.login-content .layui-form .layui-input[name=username],.layui-input[name=password] {
+    width: 300px;
+}
+
+.login-content .layui-form .layui-form-checkbox[lay-skin=primary]{
+    margin-top:0px;
+}
+.login-content .layui-form .layui-form-checkbox[lay-skin=primary] i {
+    width: 12px;
+    height: 12px;
+    border-radius: 10px;
+}
+.login-content .layui-form .layui-form-checkbox[lay-skin=primary] span {
+    font-size: 14px;
+    color: #FEFEFE;
+}
+.login-content .layui-form .login-btn {
+    border-radius: 6px;
+    background-color: #3E7CD1;
+    width:300px;
+    height:50px;
+    line-height: 50px;
+    font-size: 24px;
+}

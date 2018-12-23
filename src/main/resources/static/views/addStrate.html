@@ -1,0 +1,107 @@
+<div id="bread_strategy">
+    <span class="layui-breadcrumb" style="margin-bottom: 50px; margin-left: 20px">
+      <a href="index.html">首页</a>
+      <a onclick="layui.addStrate.backPage()" href="javascript:void(0);">策略集</a>
+      <a><cite>策略列表</cite></a>
+    </span>
+</div>
+
+<div id="parentRule" class="layui-row main-content">
+
+
+    <div class="main-content-top">
+        <button type="button" class="layui-btn layui-btn-normal layui-btn-radius" id="addStrategy"
+                onclick="layui.addStrate.viewAddStrate()">+&nbsp;&nbsp;<%add_strategy_list%>
+        </button>
+
+        <button class="layui-btn layui-btn-danger  layui-btn-radius layui-btn-xs back-button"
+                style="margin-left: 1280px" onclick="layui.addStrate.backPage()">返回前页面
+        </button>
+    </div>
+    <div class="main-content-form">
+        <form class="layui-form">
+            <div class="layui-form-item">
+                <div class="layui-input-inline">
+                    <input type="text" id="strate" autocomplete="off" v-bind:placeholder="search_strategy"
+                           class="layui-input">
+                </div>
+                <div class="layui-input-inline main-form-state">
+                    <select id="strategy_status" name="status" class="layui-select">
+                        <option value=""><%status%></option>
+                        <option value="1"><%enable%></option>
+                        <option value="0"><%disable%></option>
+                    </select>
+                </div>
+                <div class="layui-col-md1">
+                    <a class="layui-btn layui-btn-sm layui-btn-normal layui-btn-radius"
+                       onclick="layui.addStrate.initView()"><img src="../bamboo/img/query.png"><%query%></a>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="main-content-center">
+        <div id="strategyTable" class="layui-table" lay-filter="strategyEvent"></div>
+    </div>
+</div>
+
+<div id="childrenRule" style="display: none;">
+
+</div>
+
+<script id="addOrUpdateStrate" type="text/html">
+    <div id="addStrateDiv" class="" style="padding: 20px;">
+        <form id="addOrUpdateStrateForm" class="layui-form" autocomplete="off">
+            <input type="hidden" id="strateId" name="strategyId" value="{{d.strategyId}}">
+            <input type="hidden" id="strategiesId" name="strategiesId" value="{{d.strategiesId}}">
+            <div class="layui-form-item content-form">
+                <label class="layui-form-label"><%single_strategy%></label>
+                <div class="layui-input-block">
+                    <input type="text" id="strateName" name="strategy" v-bind:placeholder="single_strategy"
+                           class="layui-input" value="{{ d.strategy }}"/>
+                </div>
+            </div>
+            <div class="layui-form-item layui-form-text">
+                <label class="layui-form-label"><%description%></label>
+                <div class="layui-input-block">
+                    <textarea name="description" placeholder="......"
+                              class="layui-textarea">{{d.description}}</textarea>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label"><%status%></label>
+                <div class="layui-input-block">
+                    <input type="radio" id="enable" name="status" value="0" v-bind:title="enable" checked="">
+                    <input type="radio" id="disable" name="status" value="1" v-bind:title="disable">
+                </div>
+            </div>
+            <div class="layui-form-item form-btn">
+                <div class="layui-inline">
+                    <button class="layui-btn layui-btn-md" lay-submit lay-filter="addOrUpdateStrateForm">
+                        <%now_submit%>
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+</script>
+
+
+<script type="text/javascript">
+
+    layui.use("addStrate", function () {
+        var addStrate = layui.addStrate;
+
+        //初始化页面
+        addStrate.initView();
+        //监听事件
+        addStrate.tool();
+    })
+
+    layui.use('element', function () {
+        var element = layui.element; //导航的hover效果、二级菜单等功能，需要依赖element模块
+
+        element.render(".layui-breadcrumb")
+    });
+
+
+</script>

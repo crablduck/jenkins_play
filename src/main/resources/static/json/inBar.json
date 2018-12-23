@@ -1,0 +1,26 @@
+{
+  "code":200,
+  "message":"SUCCESS",
+  "data":[
+    {
+      "name":"A公司",
+      "value":12
+    },{
+      "name":"B公司",
+      "value":50
+    },{
+      "name":"C公司",
+      "value":32
+    },{
+      "name":"D公司",
+      "value":150
+    },{
+      "name":"E公司",
+      "value":89
+    },{
+      "name":"F公司",
+      "value":84
+    }
+  ]
+
+}

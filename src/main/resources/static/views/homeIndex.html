@@ -1,0 +1,63 @@
+<div id="riskIndex" class="risk-index">
+    <div class="layui-row main-header">
+        <span><%homeIndex%></span><!-- 首页 -->
+    </div>
+    <div id="riskRegion" style="display: none">
+        <div class="layui-row risk-echart">
+            <div class="layui-col-md12">
+                <div id="order_chart">
+                    <!--style="background-color: #3877F7;color: #fff;"-->
+                    <a><span id="inRecent7" class="risk-echart-btn chart-button-color" onclick="layui.homeIndex.orderTyepe1(this)" ><%recent_7_days%></span></a><!-- 近7天 -->
+                    <a><span id="inRecent14" class="risk-echart-btn" onclick="layui.homeIndex.orderTyepe2(this)" ><%recent_14_days%></span></a><!-- 近14天 -->
+                    <a><span id="inRecent30" class="risk-echart-btn" onclick="layui.homeIndex.orderTyepe3(this)"><%recent_30_days%></span></a><!-- 近30天 -->
+                    <a><span id="inRecent90" class="risk-echart-btn" onclick="layui.homeIndex.orderTyepe4(this)"><%recent_3_months%></span></a><!-- 近3个月 -->
+                </div>
+                <div id="inBar" class="risk-echart-div"></div>
+            </div>
+        </div>
+        <div class="layui-row risk-echart">
+            <div class="layui-col-md12">
+                <div id="bill_chart">
+                    <a><span id="biRecent7" class="risk-echart-btn" onclick="layui.homeIndex.billType1(this)" ><%recent_7_days%></span></a><!-- 近7天 -->
+                    <a><span id="biRecent14" class="risk-echart-btn" onclick="layui.homeIndex.billType2(this)"><%recent_14_days%></span></a><!-- 近14天 -->
+                    <a><span id="biRecent30" class="risk-echart-btn" onclick="layui.homeIndex.billType3(this)"><%recent_30_days%></span></a><!-- 近30天 -->
+                    <a><span id="biRecent90" class="risk-echart-btn" onclick="layui.homeIndex.billType4(this)"><%recent_3_months%></span></a><!-- 近3个月 -->
+                </div>
+                <div id="biBar" class="risk-echart-div"></div>
+            </div>
+        </div>
+    </div>
+    <div id="riskCompany">
+        <div class="layui-row risk-echart">
+            <div class="layui-col-md12">
+                <div class="risk-echart-date">
+                    <input type="text" class="layui-input" id="inDate" placeholder=" - "/><img src="../bamboo/img/calendar.png">
+                </div>
+                <div id="inLine" class="risk-echart-div"></div>
+            </div>
+        </div>
+        <div class="layui-row risk-echart">
+            <div class="layui-col-md12">
+                <div class="risk-echart-gold">
+                    <img src="../bamboo/img/gold.png"/>
+                    <span><%current_account_balance%>：1690P</span><!-- 账户当前余额 -->
+                </div>
+                <div class="risk-echart-date">
+                    <input type="text" class="layui-input" id="biDate" placeholder=" - "/><img src="../bamboo/img/calendar.png">
+                </div>
+                <div id="biLine" class="risk-echart-div"></div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+<script type="text/javascript">
+    layui.use("homeIndex",function(){
+        var homeIndex = layui.homeIndex;
+        //初始化页面
+        homeIndex.initView();
+    })
+
+</script>

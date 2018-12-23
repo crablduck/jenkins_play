@@ -1,0 +1,37 @@
+<div id="fieldManage">
+    <div class="layui-row main-content">
+    <div class="main-content-form">
+        <form class="layui-form">
+            <div class="layui-form-item">
+                <div class="layui-input-inline">
+                    <input type="text"id="field_name" name="field" autocomplete="off" v-bind:placeholder="field_search" class="layui-input">
+                </div>
+                <div class="layui-input-inline main-form-state">
+                    <select id="field_type" name="fieldType" onclick="layui.fieldManage.selectOpt()" class="layui-select">
+
+                    </select>
+                </div>
+                <div class="layui-col-md1">
+                    <a class="layui-btn layui-btn-sm layui-btn-normal layui-btn-radius" onclick="layui.fieldManage.initTable()"><img src="../bamboo/img/query.png"><%query%></a>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="main-content-center">
+        <div id="fieldManageTable" class="layui-table"></div>
+    </div>
+</div>
+</div>
+<script type="text/javascript">
+
+    layui.use("fieldManage",function(){
+        var fieldManage = layui.fieldManage;
+
+        //初始化页面
+        fieldManage.initView();
+        //监听事件
+        fieldManage.tool();
+    })
+
+
+</script>

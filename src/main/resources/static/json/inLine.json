@@ -1,0 +1,26 @@
+{
+  "code":200,
+  "message":"SUCCESS",
+  "data":[
+    {
+      "date":"11-28",
+      "value":12
+    },{
+      "date":"11-29",
+      "value":50
+    },{
+      "date":"11-30",
+      "value":32
+    },{
+      "date":"12-01",
+      "value":150
+    },{
+      "date":"12-02",
+      "value":89
+    },{
+      "date":"12-03",
+      "value":84
+    }
+  ]
+
+}

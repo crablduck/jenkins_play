@@ -1,0 +1,293 @@
+.layui-layout-admin .layui-header {
+    background-color: #4E8CFF;
+}
+.layui-header {
+    height:70px;
+}
+.layui-layout-admin .layui-logo {
+    width: 240px;
+    line-height: 70px;
+    text-align: left;
+    font-size: 18px;
+    color: #FEFEFE;
+}
+.layui-layout-admin .layui-logo img {
+    margin-left: 24px;
+    margin-top: -2px;
+    margin-right: 24px;
+}
+.layui-layout-left {
+    left: 240px;
+}
+.layui-header .layui-nav .layui-nav-item {
+    line-height: 70px;
+}
+.layui-nav-bar {
+    display: none;
+}
+.layui-layout-right .layui-nav-child img {
+    margin-right:12px;
+}
+.layui-layout-right .layui-nav-child a:hover {
+    background-color: rgba(95,158,252,0.14);
+    color: #4679EF;
+}
+.layui-layout-right .layui-nav-child dd.layui-this,.layui-layout-right .layui-nav-child dd.layui-this a {
+    background-color: rgba(95,158,252,0.14);
+    color: #4679EF;
+}
+
+
+
+.layui-layout-right .sub-lan {
+    position: absolute;
+    top: 35px;
+    min-width: 100%;
+    padding: 5px 0;
+    border: 1px solid #d2d2d2;
+    background-color: #fff;
+    line-height: 36px;
+    border-radius: 2px;
+    z-index: 100;
+    display: none;
+}
+.layui-layout-right .lanItem:hover .sub-lan {
+    display: block;
+}
+.layui-layout-right .sub-lan span {
+    color: #333;
+    display: block;
+    min-width: 100%;
+    text-align: center;
+}
+.layui-layout-right .sub-lan span:hover {
+     background-color: rgba(95,158,252,0.14);
+     color: #4679EF;
+ }
+
+
+/*   左菜单  */
+.layui-layout-admin .layui-side {
+    width: 240px;
+    top: 70px;
+    color: #fff;
+}
+.layui-side-scroll {
+    width: 240px;
+}
+.layui-nav-tree {
+    width: 240px;
+}
+.layui-side .layui-nav {
+    background-color: #fff;
+}
+.layui-side .layui-nav .layui-nav-item a {
+    font-family: "MicrosoftYaHei";
+    font-size: 16px;
+    color: #0C0C0C;
+}
+.layui-side .layui-nav .layui-nav-more {
+    border-top-color: #4679EF;
+}
+.layui-side .layui-nav-itemed>a .layui-nav-more {
+    border-color: transparent transparent #4679EF;
+}
+.layui-nav-tree .layui-nav-item a:hover {
+    background-color: rgba(95,158,252,0.14);
+    color: #4679EF!important;
+}
+.layui-nav-tree .layui-nav-itemed .layui-nav-child {
+    background-color: #fff!important;
+    margin-right:100px;
+}
+.layui-nav-itemed>a {
+    color: #4679EF!important;
+}
+.layui-nav-tree .layui-nav-child dd.layui-this,.layui-nav-tree .layui-this>a {
+    background-color: #fff!important;
+    color: #4679EF!important;
+}
+.layui-nav-tree .layui-nav-child dd>a {
+    padding: 0 20px 0 53px;
+    font-size: 14px!important;
+}
+.icon_menu {
+    margin-right: 17px;
+    height: 17px;
+    width: 16px;
+}
+
+
+/*  主内容  */
+.layui-layout-admin .layui-body {
+    top: 70px;
+    bottom: 0px;
+}
+.layui-body {
+    left: 240px;
+    background-color: #f7f9ff;
+ }
+.main-header {
+    height: 55px;
+    background-color: #fff;
+    box-shadow: 0px 1px 7px 0px rgba(78,133,247,0.29);
+}
+.main-header span {
+    height: 55px;
+    line-height: 55px;
+    font-family: "MicrosoftYaHei";
+    color: #333333;
+    font-size: 16px;
+    margin-left: 25px;
+}
+.main-content {
+    margin: 10px;
+    background-color: #fff;
+    padding: 30px;
+}
+.main-content .main-content-top .layui-btn-radius,.main-content .main-content-form .layui-btn-radius{
+    border-radius: 4px;
+}
+.main-content .main-content-form {
+    margin-top: 30px;
+}
+.main-content .main-content-form  .main-form-state {
+    width: 90px;
+}
+.layui-form-select dl dd.layui-this,.layui-form-select dl dd:hover {
+    background-color: #fff;
+    color: #4679EF;
+}
+.main-content .main-content-form .layui-col-md1 {
+    top: 3px;
+}
+.main-content .main-content-form .layui-col-md1 img {
+    margin-right: 10px;
+}
+.main-content .main-content-form .layui-form-item .layui-input-inline {
+    margin-right: 25px;
+}
+.main-content .main-content-center{
+    margin-top: 30px;
+}
+.main-content .menu-form {
+    display: none;
+}
+.risk-index .risk-echart {
+    margin: 10px;
+    border-radius: 6px;
+    background-color: #fff;
+}
+.risk-index .layui-col-md12 {
+    height: 394px;
+}
+.risk-index .layui-col-md12 .risk-echart-btn {
+    margin-left: 10px;
+    width: 80px;
+    height: 32px;
+    line-height: 32px;
+    float: left;
+    text-align: center;
+    border-radius: 4px;
+    border: 1px solid #C5C5C5;
+    color: #666666;
+}
+.risk-index .layui-col-md12 .risk-echart-btn:hover {
+    background-color: #3877F7;
+    color: #fff;
+    cursor: pointer;
+}
+.risk-index .risk-echart .risk-echart-div {
+    height: 330px;
+    margin-top: 40px;
+}
+#riskCompany .layui-input {
+    background-color: #EAEFF7;
+    border-radius: 4px;
+    padding-right: 30px;
+}
+#riskCompany .risk-echart-date img {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+}
+#riskCompany .risk-echart-date {
+    width: 240px;
+    height: 38px;
+    margin-top: 40px;
+    right: 5%;
+    position: absolute;
+    z-index: 1;
+}
+#riskCompany .risk-echart-gold{
+    width: 330px;
+    position: absolute;
+    left:15%;
+    top:50px;
+    font-size: 20px;
+    color: #FFA525;
+}
+
+.layui-laypage .layui-laypage-curr .layui-laypage-em {
+    background-color: rgba(56,119,247,1);
+}
+.layui-laypage .layui-laypage-limits select:focus,.layui-laypage .layui-laypage-skip input:focus {
+    border-color: rgba(56,119,247,1)!important;
+}
+.layui-form-radio>i:hover, .layui-form-radioed>i {
+    color: rgba(56,119,247,1);
+}
+.layui-laypage button{
+    background-color: rgba(56,119,247,1);
+    border-radius: 2px;
+    border-color: rgba(56,119,247,1);
+    color: #fff;
+}
+.layui-laypage button:hover {
+    opacity: 0.8;
+}
+
+.form-btn {
+    text-align: center;
+    margin-top:30px;
+}
+.form-btn .layui-btn {
+    background-color: rgba(56,119,247,1);
+    border-radius: 6px;
+}
+.layui-btn {
+    background-color: rgba(56,119,247,1);
+}
+.layui-table thead tr,.layui-layer-title {
+    background-color: rgba(230,241,255,1)!important;
+}
+.layui-layer-btn .layui-layer-btn0 {
+    border-color: rgba(56,119,247,1)!important;
+    background-color: rgba(56,119,247,1)!important;
+}
+
+.layui-layer {
+    border-radius: 6px!important;
+}
+.layui-layer-title {
+    border-radius: 6px 6px 0 0!important;
+}
+
+show-right {
+    margin : 0px 0px 0px 200px;
+}
+
+.risk-index .layui-col-md12 .chart-button-color {
+    background-color: #3877F7;
+    color: #fff;
+}
+.back-button {
+    margin-left: 1250px
+}
+.layui-form-label-content {
+    text-align: left;
+    width: 200px;
+}
+.select_width{
+    width:130px;
+}

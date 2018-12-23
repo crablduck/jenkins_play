@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-bind="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>首页-后台</title>
+
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="layui/css/layui.css">
+    <link rel="stylesheet" href="font-awesome-4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/index.css">
+    <script type="text/javascript" src="js/vue.min.js"></script>
+    <script type="text/javascript" src="module/cn.js?v=1.0.0.0"></script>
+    <script type="text/javascript" src="module/en.js?v=1.0.0.0"></script>
+</head>
+<body class="layui-layout-body">
+<div class="layui-layout layui-layout-admin">
+    <div class="layui-header">
+        <div class="layui-logo">
+            <input type="hidden" class="menu-close" style="display:block;">
+            <img src="img/open.png" onclick="layui.index.menuControl('')" style="cursor: pointer;"><span id="navigation"><%navigation%></span><!-- 功能导航 -->
+        </div>
+
+        <ul class="layui-nav layui-layout-left">
+            <li class="layui-nav-item"><img src="img/index-logo.png"></li>
+        </ul>
+
+        <ul class="layui-nav layui-layout-right">
+            <li class="layui-nav-item" style="right: 100px;cursor: pointer;">
+                <img src="img/refresh.png" onclick="layui.index.clickIndex('2')">
+            </li>
+            <li class="layui-nav-item lanItem" style="height:40px;top:8px;right: 40px;cursor: pointer;">
+                <div class="" style="width: 100px;height: 25px;border: 2px solid #F7F9FF;border-radius: 15px;">
+                    <span id="currLan" style="width: 100%;height: 25px;line-height: 25px;position: absolute;text-align: center;"></span>
+                    <ul id="subLan" class="sub-lan">
+                        <li><span onclick="layui.index.switchLanguage('en')"><%index_en%></span></li><!-- English -->
+                        <li><span onclick="layui.index.switchLanguage('cn')"><%index_cn%></span></li><!-- 中文版 -->
+                    </ul>
+                </div>
+            </li>
+            <li class="layui-nav-item">
+                <a href="javascript:;">
+                    <img src="img/user.png" class="layui-nav-img">
+                    <span id="display-name"></span>
+                </a>
+                <dl id="operate" class="layui-nav-child">
+                    <dd><a href="javascript:layui.index.editPwd()"><img src="img/index-pwd.png"><%edit_password%></a></dd><!-- 修改密码 -->
+                    <dd><a href="javascript:layui.index.clickPersonal()"><img src="img/personal.png"><%personal_information%></a></dd><!-- 个人信息 -->
+                    <dd><a href="javascript:layui.index.logout()"><img src="img/logout.png"><%sign_out%></a></dd><!-- 退出登录 -->
+                </dl>
+            </li>
+        </ul>
+    </div>
+
+    <div class="layui-side">
+        <div id="menu" class="layui-side-scroll"></div>
+    </div>
+
+    <div class="layui-body">
+        <!-- 内容主体区域 -->
+        <div id="main"></div>
+    </div>
+</div>
+
+<script id="editPwd" type="text/html">
+    <div class="" style="padding: 20px;">
+        <form id="editPwdForm" class="layui-form" autocomplete="off">
+            <input type="hidden" name="userId" value="{{d.userId}}">
+            <div class="layui-form-item">
+                {{# if(d.parentUserAccount){ }}
+                <label class="layui-form-label"><%parent_account%>：</label><!-- 用户账号 -->
+                <label class="layui-form-label">{{d.parentUserAccount}}</label>
+                {{# }else{ }}
+                {{# } }}
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label"><%old_Password%>：</label><!-- 原密码 -->
+                <div class="layui-input-block">
+                    <input type="password" id="oldPwd" name="oldPwd" lay-verify="oldPwd" v-bind:placeholder="input" class="layui-input"><!-- 输入 -->
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label"><%new_password%>：</label><!-- 新密码 -->
+                <div class="layui-input-block">
+                    <input type="password" id="newPwd" name="newPwd" lay-verify="newPwd" v-bind:placeholder="input" class="layui-input"><!-- 输入 -->
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label"><%confirm_password%>：</label><!-- 确认密码 -->
+                <div class="layui-input-block">
+                    <input type="password" name="confirmPwd" lay-verify="confirmPwd" v-bind:placeholder="input" class="layui-input"><!-- 输入 -->
+                </div>
+            </div>
+            <div class="layui-form-item" style="text-align: center;margin-top:30px;">
+                <div class="layui-inline">
+                    <button class="layui-btn layui-btn-radius layui-btn-md" lay-submit lay-filter="editPwdForm"><%now_submit%></button><!-- 立即提交 -->
+                </div>
+            </div>
+        </form>
+    </div>
+</script>
+
+
+
+<script type="text/javascript" src="js/common.js"></script>
+<script type="text/javascript" src="js/echarts.min.js"></script>
+<script type="text/javascript" src="layui/layui.all.js"></script>
+<script type="text/javascript" src="js/layui-xtree.js"></script>
+<script>
+    layui.config({
+        base: 'module/',
+        version:'1.0.0.0',
+        debug : true
+
+    });
+
+    layui.use('index', function(){
+        var index = layui.index;
+        //页面初始化
+        index.initView();
+        //监听事件
+        index.tool();
+    });
+</script>
+</body>
+</html>

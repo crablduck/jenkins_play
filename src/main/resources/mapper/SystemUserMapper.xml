@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.wlh.mapper.SystemUserMapper">
+    <select id="selectUserPages" resultType="cn.wlh.vo.UserInfoRes">
+        SELECT su.user_id AS userId,su.user_account AS userAccount,su.username AS username,
+        su.user_phone AS userPhone,su.commodity_id AS commodityId,su.creater_id AS createrId,su.company_id AS companyId,
+        su.sub_account_num AS subAccountNum,
+        (SELECT username FROM system_user WHERE user_id = #{userInfoReq.userId}) AS createrName,
+        su.state AS state,su.descr AS descr,su.create_time AS createTime,
+        sr.role_id AS roleId,sr.role_name AS roleName,
+        sc.company_name AS companyName
+        FROM system_user su
+        LEFT JOIN system_user_role sur ON su.user_id = sur.user_id
+        LEFT JOIN system_role sr ON sr.role_id = sur.role_id
+        LEFT JOIN system_company sc ON sc.company_id = su.company_id
+        <where>
+            su.creater_id = #{userInfoReq.userId}
+            <if test="userInfoReq.state != null and userInfoReq.state != ''">AND su.state = #{userInfoReq.state}</if>
+            <if test="userInfoReq.roleId != null and userInfoReq.roleId != ''">AND sr.role_id = #{userInfoReq.roleId}</if>
+            <if test="userInfoReq.userAccount != null and userInfoReq.userAccount != ''">AND (su.user_account like CONCAT('%',#{userInfoReq.userAccount},'%') OR su.username like CONCAT('%',#{userInfoReq.username},'%') OR su.user_phone like CONCAT('%',#{userInfoReq.userPhone},'%'))</if>
+        </where>
+    </select>
+
+    <select id="selectCompanyUserPages" resultType="cn.wlh.vo.UserInfoRes">
+        SELECT su.user_id AS userId,su.user_account AS userAccount,su.username AS username,
+        su.user_phone AS userPhone,su.commodity_id AS commodityId,su.creater_id AS createrId,su.company_id AS companyId,
+        su.sub_account_num AS subAccountNum,
+        (SELECT username FROM system_user WHERE user_id = #{userInfoReq.createrId}) AS createrName,
+        su.state AS state,su.descr AS descr,su.create_time AS createTime,
+        sr.role_id AS roleId,sr.role_name AS roleName,sc.company_name AS companyName
+        FROM system_user su
+        LEFT JOIN system_user_role sur ON su.user_id = sur.user_id
+        LEFT JOIN system_role sr ON sr.role_id = sur.role_id
+        LEFT JOIN system_company sc ON sc.company_id = su.company_id
+        <where>
+            su.user_id = #{userInfoReq.userId}
+            <if test="userInfoReq.state != null and userInfoReq.state != ''">AND su.state = #{userInfoReq.state}</if>
+            <if test="userInfoReq.roleId != null and userInfoReq.roleId != ''">AND sr.role_id = #{userInfoReq.roleId}</if>
+            <if test="userInfoReq.userAccount != null and userInfoReq.userAccount != ''">AND (su.user_account like CONCAT('%',#{userInfoReq.userAccount},'%') OR su.username like CONCAT('%',#{userInfoReq.username},'%') OR su.user_phone like CONCAT('%',#{userInfoReq.userPhone},'%'))</if>
+        </where>
+    </select>
+
+
+    <select id="selectSubUserPages" resultType="cn.wlh.vo.UserInfoRes">
+        SELECT su.user_id AS userId,su.user_account AS userAccount,su.username AS username,su.user_phone AS userPhone,
+        su.state AS state,su.descr AS descr,su.create_time AS createTime,su.creater_id AS createrId,
+        su.commodity_id AS commodityId,c.commodity_name AS commodityName,
+        sr.role_id AS roleId,sr.role_name AS roleName,
+        (SELECT user_account FROM system_user WHERE user_id= #{userInfoReq.createrId}) AS createrAccount,
+        (SELECT username FROM system_user WHERE user_id= #{userInfoReq.createrId}) AS createrName
+        FROM system_user su
+        LEFT JOIN system_user_role sur ON sur.user_id = su.user_id
+        LEFT JOIN system_role sr ON sr.role_id = sur.role_id
+        LEFT JOIN commodity c ON c.id = su.commodity_id
+        <where>
+            su.creater_id = #{userInfoReq.createrId}
+            <if test="userInfoReq.state != null and userInfoReq.state != ''">AND su.state = #{userInfoReq.state}</if>
+            <if test="userInfoReq.commodityId != null and userInfoReq.commodityId != ''">AND c.id = #{userInfoReq.commodityId}</if>
+            <if test="userInfoReq.userAccount != null and userInfoReq.userAccount != ''">AND (su.user_account like CONCAT('%',#{userInfoReq.userAccount},'%') OR su.username like CONCAT('%',#{userInfoReq.username},'%') OR su.user_phone like CONCAT('%',#{userInfoReq.userPhone},'%'))</if>
+        </where>
+    </select>
+
+</mapper>

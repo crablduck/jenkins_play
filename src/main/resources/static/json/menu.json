@@ -1,0 +1,110 @@
+{
+  "code":200,
+  "message":"SUCCESS",
+  "data":[
+    {
+      "name": "首页",
+      "icon": "homeIndex",
+      "children": [
+        {
+          "name": "首页",
+          "url": "#views/homeIndex.html"
+        }, {
+          "name": "个人信息",
+          "url": "#views/personalInfo.html"
+        }
+      ]
+    }, {
+      "name": "管理中心",
+      "icon": "manageCenter",
+      "children": [
+        {
+          "name": "应用管理",
+          "url": "#views/applicationManage.html"
+        }, {
+          "name": "用户管理",
+          "url": "#views/userManage.html"
+        }, {
+          "name": "角色管理",
+          "url": "#views/roleManage.html"
+        }, {
+          "name": "菜单管理",
+          "url": "#views/menuManage.html"
+        }, {
+          "name": "字典管理",
+          "url": "#views/dictManage.html"
+        }
+      ]
+    }, {
+      "name": "订单管理",
+      "icon": "orderManage",
+      "children": [
+        {
+          "name": "订单管理",
+          "url": "#views/orderManage.html"
+        }
+      ]
+    }, {
+      "name": "账户管理",
+      "icon": "billManage",
+      "children": [
+        {
+          "name": "账单管理",
+          "url": "#views/billManage.html"
+        }
+      ]
+    }, {
+      "name": "策略中心",
+      "icon": "strategyCenter",
+      "children": [
+        {
+          "name": "字段管理",
+          "url": "#views/fieldManage.html"
+        },
+        {
+          "name": "策略集合管理",
+          "url": "#views/strategyManage.html"
+        }
+
+
+      ]
+    }, {
+      "name": "关系图谱",
+      "icon": "relationshipMap",
+      "children": [
+        {
+          "name": "关系图谱",
+          "url": "#views/relationshipMap.html"
+        }
+      ]
+    }, {
+      "name": "黑名单列表",
+      "icon": "blacklist",
+      "children": [
+        {
+          "name": "黑名单列表",
+          "url": "#views/blacklist.html"
+        }
+      ]
+    }, {
+      "name": "反欺诈列表",
+      "icon": "fraudList",
+      "children": [
+        {
+          "name": "反欺诈列表",
+          "url": "#views/fraudList.html"
+        }
+      ]
+    }, {
+      "name": "运营商数据",
+      "icon": "operatorData",
+      "children": [
+        {
+          "name": "运营商数据",
+          "url": "#views/operatorData.html"
+        }
+      ]
+    }
+  ]
+
+}

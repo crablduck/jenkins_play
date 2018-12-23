@@ -1,0 +1,90 @@
+<div id="dictManage">
+    <div class="layui-row main-header">
+        <span><%manageCenter%>&nbsp;>&nbsp;<%dictManage%></span><!-- 管理中心 角色管理 -->
+    </div>
+    <div class="layui-row main-content">
+        <div class="main-content-top">
+            <button class="layui-btn layui-btn-normal layui-btn-radius" onclick="layui.dictManage.addDict()">+&nbsp;&nbsp;<%add_dict%></button><!-- 添加字典 -->
+        </div>
+        <div class="main-content-form">
+            <form class="layui-form">
+                <div class="layui-form-item">
+                    <div class="layui-input-inline">
+                        <input type="text" id="code_name" autocomplete="off" v-bind:placeholder="code_name" class="layui-input"><!-- 编码/名称 -->
+                    </div>
+                    <div class="layui-input-inline main-form-state">
+                        <select id="state" name="state" class="layui-select">
+                            <option value=""><%status%></option><!-- 状态 -->
+                            <option value="0"><%enable%></option><!-- 启用 -->
+                            <option value="1"><%disable%></option><!-- 禁用 -->
+                        </select>
+                    </div>
+                    <div class="layui-col-md1">
+                        <a class="layui-btn layui-btn-sm layui-btn-normal layui-btn-radius" onclick="layui.dictManage.initTable()"><img src="../bamboo/img/query.png"><%query%></a><!-- 查询 -->
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="main-content-center">
+            <div id="dictManageTable" class="layui-table" lay-filter="dictManageEvent"></div>
+        </div>
+    </div>
+</div>
+
+<script id="addOrUpdateDict" type="text/html">
+    <div class="" style="padding: 20px;">
+        <form id="addOrUpdateDictForm" class="layui-form" autocomplete="off">
+            <input type="hidden" id="id" name="id" value="{{d.id}}">
+            <div class="layui-form-item">
+                <label class="layui-form-label"><%dict_code%></label><!-- 字典编码 -->
+                <div class="layui-input-block">
+                    <input type="text" id="code" name="code" v-bind:placeholder="dict_code" class="layui-input" value="{{d.code}}" /><!-- 字典编码 -->
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label"><%dict_name%></label><!-- 字典名称 -->
+                <div class="layui-input-block">
+                    <input type="text" id="name" name="name" v-bind:placeholder="dict_name" class="layui-input" value="{{d.name}}" /><!-- 字典名称 -->
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label"><%value%></label><!-- 字典值 -->
+                <div class="layui-input-block">
+                    <input type="text" id="value" name="value" v-bind:placeholder="value" class="layui-input" value="{{d.value}}" /><!-- 值 -->
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label"><%status%></label><!-- 状态 -->
+                <div class="layui-input-block">
+                    <input type="radio" id="enable" name="state" value="0" v-bind:title="enable" checked=""><!-- 启用 -->
+                    <input type="radio" id="disable" name="state" value="1" v-bind:title="disable"><!-- 禁用 -->
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label"><%note%></label><!-- 备注 -->
+                <div class="layui-input-block">
+                    <textarea id="descr" name="descr" v-bind:placeholder="note" class="layui-textarea" value="{{d.descr}}"></textarea><!-- 备注 -->
+                </div>
+            </div>
+            <div class="layui-form-item form-btn">
+                <div class="layui-inline">
+                    <button class="layui-btn layui-btn-md" lay-submit lay-filter="addOrUpdateDictForm"><%now_submit%></button><!-- 立即提交 -->
+                </div>
+            </div>
+        </form>
+    </div>
+</script>
+
+
+
+
+<script type="text/javascript">
+    layui.use("dictManage",function(){
+        var dictManage = layui.dictManage;
+        //初始化页面
+        dictManage.initView();
+        //监听事件
+        dictManage.tool();
+    })
+
+</script>

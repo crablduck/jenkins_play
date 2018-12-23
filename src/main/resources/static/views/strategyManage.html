@@ -1,0 +1,85 @@
+<div id="parent">
+    <div id="strategy_manage">
+        <div class="layui-row main-content">
+        <div class="main-content-top">
+            <button type="button" class="layui-btn layui-btn-normal layui-btn-radius" id="addStrategy" onclick="layui.strategyManage.viewAddStrategy()"  >+&nbsp;&nbsp;<%add_strategyManage_list%></button>
+        </div>
+        <div class="main-content-form">
+            <form class="layui-form">
+                <div class="layui-form-item">
+                    <div class="layui-input-inline">
+                        <input type="text"id="strategy_name"  autocomplete="off" v-bind:placeholder="search_strategyManage" class="layui-input">
+                    </div>
+                    <div class="layui-input-inline main-form-state">
+                        <select id="status" name="status" class="layui-select">
+                            <option value=""><%status%></option>
+                            <option value="0"><%enable%></option>
+                            <option value="1"><%disable%></option>
+                        </select>
+                    </div>
+                    <div class="layui-col-md1">
+                        <a class="layui-btn layui-btn-sm layui-btn-normal layui-btn-radius" onclick="layui.strategyManage.initTable()"><img src="../bamboo/img/query.png"><%query%></a>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="main-content-center">
+            <div id="strategyManageTable" class="layui-table" lay-filter="strategyManageEvent"></div>
+        </div>
+    </div>
+    </div>
+</div>
+
+<div id="children" style="display: none;">
+
+</div>
+
+<!--更新弹框-->
+<script id="addOrUpdateStrategy" type="text/html">
+    <div class="" style="padding:20px;">
+        <form id="addOrUpdateRuleForm" class="layui-form" autocomplete="off">
+            <input type="hidden" name="strategyManageId" value="{{d.strategyManageId}}">
+            <div class="layui-form-item">
+                <label class="layui-form-label"><%strategy%>：</label>
+                <div class="layui-input-block">
+                    <input type="text" name="strategy" v-bind:placeholder="strategy" class="layui-input" value="{{ d.strategy }}" />
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label"><%description%>：</label>
+                <div class="layui-input-block">
+                    <textarea name="description" placeholder="......" class="layui-textarea">{{d.description}}</textarea>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label"><%status%>：</label>
+                <div class="layui-input-block">
+                    <input type="radio" id="enable" name="status" value="0" v-bind:title="enable" checked="">
+                    <input type="radio" id="disable" name="status" value="1" v-bind:title="disable">
+                </div>
+            </div>
+            <div class="layui-form-item form-btn">
+                <div class="layui-inline">
+                    <button class="layui-btn layui-btn-md" lay-submit lay-filter="addOrUpdateStrategyForm"><%now_submit%></button>
+                </div>
+            </div>
+        </form>
+    </div>
+</script>
+
+
+<script type="text/javascript">
+
+    layui.use("strategyManage",function(){
+        var strategyManage = layui.strategyManage;
+
+        //初始化页面
+        strategyManage.initView();
+        //监听事件
+        strategyManage.tool();
+    })
+
+
+
+
+</script>
